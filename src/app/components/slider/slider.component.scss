@@ -1,14 +1,38 @@
 :host {
-
   .slider-content {
     display: flex;
     flex-wrap: nowrap;
     flex-direction: row;
-    border: 1px solid black;
     min-height: 40vw;
 
     &.transition-effect {
       transition: transform 0.7s ease-in-out;
+    }
+  }
+
+  .slider-footer {
+    .slider-points {
+      ul {
+        padding: 0;
+      }
+      ul > li {
+        display: inline-block;
+        list-style: none;
+        background: #087;
+        border-radius: 1000px;
+        width: 8px;
+        height: 8px;
+        margin-right: 3px;
+
+        &:hover {
+          background: #099;
+          cursor: pointer;
+        }
+
+        &.selected {
+          background: #099;
+        }
+      }
     }
   }
 

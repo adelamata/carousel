@@ -35,6 +35,8 @@ export class SliderComponent implements AfterContentInit {
   slidesTotal = 0;
 
   ngAfterContentInit() {
+    this.slides = this.rawSlides.toArray();
+    
     this.slidesTotal = this.slides.length;
     this.slides.forEach((slide, index) => (slide.order = index + 1));
   }

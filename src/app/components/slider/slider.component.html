@@ -2,5 +2,9 @@
   <ng-content></ng-content>
 </div>
 <div class="slider-footer">
-  <div class="slider-points"></div>
+  <div class="slider-points">
+    <ul >
+      <li *ngFor="let slide of slides; let i = index" [ngClass]="{'selected': currentSlide === i}"></li>
+    </ul>
+  </div>
 </div>
