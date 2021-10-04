@@ -6,7 +6,8 @@ import {
   HostBinding,
   ViewChild,
   ElementRef,
-  Renderer2
+  Renderer2,
+  QueryList,
 } from '@angular/core';
 import { SlideComponent } from './components/slide/slide.component';
 
@@ -16,10 +17,10 @@ import { SlideComponent } from './components/slide/slide.component';
   styleUrls: ['./slider.component.scss'],
 })
 export class SliderComponent implements AfterContentInit {
-
-  @ContentChildren(SlideComponent) slides: SlideComponent[];
+  @ContentChildren(SlideComponent) rawSlides: QueryList<SlideComponent>;
   @ViewChild('sliderContent') sliderContent: ElementRef;
 
+  constructor(private readonly renderer: Renderer2) {}
 
   @HostListener('click') clicked() {
     this.startEffect();
@@ -29,10 +30,7 @@ export class SliderComponent implements AfterContentInit {
     this.sortSlides();
   }
 
-  constructor(private readonly renderer: Renderer2) {
-
-  }
-
+  slides: SlideComponent[];
   currentSlide = 0;
   slidesTotal = 0;
 
@@ -63,12 +61,26 @@ export class SliderComponent implements AfterContentInit {
   }
 
   private startEffect(): void {
-    this.renderer.setStyle(this.sliderContent.nativeElement, 'transform', 'translateX(-100%)');
-    this.renderer.addClass(this.sliderContent.nativeElement, 'transition-effect');
+    this.renderer.setStyle(
+      this.sliderContent.nativeElement,
+      'transform',
+      'translateX(-100%)'
+    );
+    this.renderer.addClass(
+      this.sliderContent.nativeElement,
+      'transition-effect'
+    );
   }
 
-  private endEffect(): void{
-    this.renderer.setStyle(this.sliderContent.nativeElement, 'transform', 'translateX(0)');
-    this.renderer.removeClass(this.sliderContent.nativeElement, 'transition-effect');
+  private endEffect(): void {
+    this.renderer.setStyle(
+      this.sliderContent.nativeElement,
+      'transform',
+      'translateX(0)'
+    );
+    this.renderer.removeClass(
+      this.sliderContent.nativeElement,
+      'transition-effect'
+    );
   }
 }
