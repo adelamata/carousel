@@ -47,13 +47,11 @@ export class SliderComponent implements AfterContentInit {
 
     let order = 1;
 
-    // change order from current position till last
     for (let i = this.currentSlide; i <= this.slidesTotal; i++) {
       this.slides[i].order = order;
       order++;
     }
 
-    // change order from first position till current
     for (let i = 0; i < this.currentSlide; i++) {
       this.slides[i].order = order;
       order++;
