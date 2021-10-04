@@ -1,16 +1,12 @@
 :host {
-  overflow: hidden;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  border: 1px solid black;
+  min-height: 40vw;
 
-  .slider-container {
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: row;
-    border: 1px solid black;
-    min-height: 40vw;
-
-    .transition-effect {
-      transition: transform 0.7s ease-in-out;
-    }
+  .transition-effect {
+    transition: transform 0.7s ease-in-out;
   }
 
   ::ng-deep slide {

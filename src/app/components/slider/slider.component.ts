@@ -16,10 +16,12 @@ export class SliderComponent implements AfterContentInit {
   @ContentChildren(SlideComponent) slides: SlideComponent[];
 
   @HostBinding('class') class;
+  @HostBinding('style.transform') transform;
 
   @HostListener('click') clicked() {
-    console.log ('click');
+    console.log('click');
     this.class = 'transition-effect';
+    this.transform = 'translateX(-100%)';
   }
 
   currentSlide = 1;
