@@ -21,7 +21,9 @@ export class SliderComponent implements AfterContentInit {
   @HostListener('click') clicked() {
     this.class = 'transition-effect';
     this.transform = 'translateX(-100%)';
+  }
 
+  @HostListener('transitionend') transitioned() {
     this.sortSlides();
   }
 
