@@ -31,13 +31,14 @@ export class SliderComponent implements AfterContentInit {
   ngAfterContentInit() {
     this.slidesTotal = this.slides.length;
     this.slides.forEach((slide, index) => (slide.order = index + 1));
+    console.log(this.slidesTotal);
   }
 
   sortSlides(): void {
     this.currentSlide =
       this.currentSlide === this.slidesTotal ? 1 : this.currentSlide++;
 
-    let order = 1;
+    let order = 0;
 
     // change order from current position till last
     for (let i = this.currentSlide; i <= this.slidesTotal; i++) {
