@@ -5,7 +5,8 @@ import {
   HostListener,
   HostBinding,
   ViewChild,
-  ElementRef
+  ElementRef,
+  Renderer2
 } from '@angular/core';
 import { SlideComponent } from './components/slide/slide.component';
 
@@ -19,8 +20,6 @@ export class SliderComponent implements AfterContentInit {
   @ContentChildren(SlideComponent) slides: SlideComponent[];
   @ViewChild('sliderContent') sliderContent: ElementRef;
 
-  @HostBinding('class') class;
-  @HostBinding('style.transform') transform;
 
   @HostListener('click') clicked() {
     this.startEffect();
@@ -30,7 +29,11 @@ export class SliderComponent implements AfterContentInit {
     this.sortSlides();
   }
 
-  currentSlide = 1;
+  constructor(private readonly renderer: Renderer2) {
+
+  }
+
+  currentSlide = 0;
   slidesTotal = 0;
 
   ngAfterContentInit() {
@@ -40,12 +43,12 @@ export class SliderComponent implements AfterContentInit {
 
   sortSlides(): void {
     this.currentSlide =
-      this.currentSlide === this.slidesTotal ? 1 : this.currentSlide++;
+      this.currentSlide === this.slidesTotal ? 1 : ++this.currentSlide;
 
     let order = 0;
 
     // change order from current position till last
-    for (let i = this.currentSlide; i <= this.slidesTotal; i++) {
+    for (let i = this.currentSlide; i < this.slidesTotal; i++) {
       this.slides[i].order = order;
       order++;
     }
@@ -60,12 +63,12 @@ export class SliderComponent implements AfterContentInit {
   }
 
   private startEffect(): void {
-    this.class = 'transition-effect';
-    this.transform = 'translateX(-100%)';
+    this.renderer.setStyle(this.sliderContent.nativeElement, 'transform', 'translateX(-100%)');
+    this.renderer.addClass(this.sliderContent.nativeElement, 'transition-effect');
   }
 
   private endEffect(): void{
-    this.class = '';
-    this.transform = 'translateX(0)';
+    this.renderer.setStyle(this.sliderContent.nativeElement, 'transform', 'translateX(0)');
+    this.renderer.removeClass(this.sliderContent.nativeElement, 'transition-effect');
   }
 }
