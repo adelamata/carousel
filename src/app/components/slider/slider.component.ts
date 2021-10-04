@@ -19,15 +19,39 @@ export class SliderComponent implements AfterContentInit {
   @HostBinding('style.transform') transform;
 
   @HostListener('click') clicked() {
-    console.log('click');
     this.class = 'transition-effect';
     this.transform = 'translateX(-100%)';
+
+    this.sortSlides();
   }
 
   currentSlide = 1;
+  slidesTotal = 0;
 
   ngAfterContentInit() {
-    console.log(this.slides);
+    this.slidesTotal = this.slides.length;
     this.slides.forEach((slide, index) => (slide.order = index + 1));
+  }
+
+  sortSlides(): void {
+    this.currentSlide =
+      this.currentSlide === this.slidesTotal ? 1 : this.currentSlide++;
+
+    let order = 1;
+
+    // change order from current position till last
+    for (let i = this.currentSlide; i <= this.slidesTotal; i++) {
+      this.slides[i].order = order;
+      order++;
+    }
+
+    // change order from first position till current
+    for (let i = 1; i < this.currentSlide; i++) {
+      this.slides[i].order = order;
+      order++;
+    }
+
+    this.class = '';
+    this.transform = 'translateX(0)';
   }
 }
