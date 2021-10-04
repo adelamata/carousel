@@ -4,6 +4,8 @@ import {
   ContentChildren,
   HostListener,
   HostBinding,
+  ViewChild,
+  ElementRef
 } from '@angular/core';
 import { SlideComponent } from './components/slide/slide.component';
 
@@ -13,14 +15,15 @@ import { SlideComponent } from './components/slide/slide.component';
   styleUrls: ['./slider.component.scss'],
 })
 export class SliderComponent implements AfterContentInit {
+
   @ContentChildren(SlideComponent) slides: SlideComponent[];
+  @ViewChild('sliderContent') sliderContent: ElementRef;
 
   @HostBinding('class') class;
   @HostBinding('style.transform') transform;
 
   @HostListener('click') clicked() {
-    this.class = 'transition-effect';
-    this.transform = 'translateX(-100%)';
+    this.startEffect();
   }
 
   @HostListener('transitionend') transitioned() {
@@ -33,7 +36,6 @@ export class SliderComponent implements AfterContentInit {
   ngAfterContentInit() {
     this.slidesTotal = this.slides.length;
     this.slides.forEach((slide, index) => (slide.order = index + 1));
-    console.log(this.slidesTotal);
   }
 
   sortSlides(): void {
@@ -54,6 +56,15 @@ export class SliderComponent implements AfterContentInit {
       order++;
     }
 
+    this.endEffect();
+  }
+
+  private startEffect(): void {
+    this.class = 'transition-effect';
+    this.transform = 'translateX(-100%)';
+  }
+
+  private endEffect(): void{
     this.class = '';
     this.transform = 'translateX(0)';
   }

@@ -1,12 +1,15 @@
 :host {
-  display: flex;
-  flex-wrap: nowrap;
-  flex-direction: row;
-  border: 1px solid black;
-  min-height: 40vw;
 
-  &.transition-effect {
-    transition: transform 0.7s ease-in-out;
+  .slider-content {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    border: 1px solid black;
+    min-height: 40vw;
+
+    &.transition-effect {
+      transition: transform 0.7s ease-in-out;
+    }
   }
 
   ::ng-deep slide {
