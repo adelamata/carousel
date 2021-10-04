@@ -5,12 +5,12 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HelloComponent } from './hello.component';
 
-import { CarouselComponent } from './components/carousel/carousel.component';
-import { SlideComponent } from './components/carousel/slider/slide.component';
+import { SliderComponent } from './components/slider/slider.component';
+import { SlideComponent } from './components/slider/components/slide.component';
 
 @NgModule({
   imports: [BrowserModule, FormsModule],
-  declarations: [AppComponent, HelloComponent, CarouselComponent, SlideComponent],
+  declarations: [AppComponent, HelloComponent, SliderComponent, SlideComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
