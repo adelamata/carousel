@@ -1,10 +1,12 @@
 :host {
   overflow: hidden;
 
-  .carousel-container {
+  .slider-container {
     display: flex;
     flex-wrap: nowrap;
     flex-direction: row;
+    border: 1px solid black;
+    min-height: 40vw;
   }
 
   ::ng-deep slide {
