@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HelloComponent } from './hello.component';
 
 import { SliderComponent } from './components/slider/slider.component';
-import { SlideComponent } from './components/slider/components/slide.component';
+import { SlideComponent } from './components/slider/components/slide/slide.component';
 
 @NgModule({
   imports: [BrowserModule, FormsModule],

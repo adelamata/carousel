@@ -1,4 +1,4 @@
-import { Component, AfterContentInit } from '@angular/core';
+import { Component, AfterContentInit, ContentChildren } from '@angular/core';
 import { SlideComponent } from './components/slide/slide.component';
 
 @Component({
